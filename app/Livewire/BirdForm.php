@@ -30,6 +30,15 @@ class BirdForm extends Component
         $this->reset();
     }
 
+    public function delete($entryId)
+    {
+        $entry = Entry::find($entryId);
+
+        if ($entry) {
+            $entry->delete();
+        }
+    }
+
 
     public function render()
     {

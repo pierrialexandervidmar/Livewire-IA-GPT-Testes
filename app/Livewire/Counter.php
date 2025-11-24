@@ -7,11 +7,18 @@ use Livewire\Component;
 class Counter extends Component
 {
     public int $count = 0;
-    public int $number;
+    public ?int $number = null;
 
-    public function changeCount(int $number)
+    public function changeCount(): void
     {
-        $this->count = $number;
+        $this->validate([
+            'number' => ['required', 'integer'],
+        ]);
+
+        $this->count += (int) $this->number;
+
+        // limpa o campo depois de somar
+        $this->reset('number');
     }
 
     public function render()

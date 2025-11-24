@@ -65,7 +65,7 @@
             @else
                 <div class="space-y-3">
                     @foreach ($entries as $entry)
-                        <div
+                        <div wire:key="entry-{{ $entry->id }}" wire:transition
                             class="rounded-xl border border-slate-700 bg-slate-900/60 px-4 py-3 text-sm flex flex-col gap-1">
                             <div class="flex items-center justify-between">
                                 <div class="font-semibold text-emerald-300">
@@ -82,6 +82,11 @@
                                     {{ $entry->notes }}
                                 </div>
                             @endif
+
+                            <button wire:click="delete({{ $entry->id }})"
+                                class="self-end text-xs text-red-400 hover:underline focus:outline-none">
+                                Delete
+                            </button>
                         </div>
                     @endforeach
                 </div>
